@@ -75,20 +75,22 @@ public class BoardManager {
         return boardRows;
     }
 
-    public static void runMove (int r, int c, int moveDirection) {
+    public static void runMove (int c, int r, int moveDirection) {
         for (int i = 0; i < carArray.length; i++) {
+            System.out.println(carArray[i].getRow() + " " + carArray[i].getColumn() );
             if (carArray[i].getRow() == r && carArray[i].getColumn() == c) {
+                System.out.println("FOUND");
                 if (moveDirection == MOVE_RIGHT) {
-
+                    carArray[i].moveRight();
                 }
                 if (moveDirection == MOVE_LEFT) {
-
+                    carArray[i].moveLeft();
                 }
                 if (moveDirection == MOVE_DOWN) {
-
+                    carArray[i].moveDown();
                 }
                 if (moveDirection == MOVE_UP) {
-
+                    carArray[i].moveUp();
                 }
             }
         }

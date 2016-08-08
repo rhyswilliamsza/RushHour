@@ -32,28 +32,29 @@ public class Car {
         if (redCar) {
             carColour = new Color(236, 56, 44);
         } else {
-            //Pick Random Colour
-            int red = (int) (Math.random() * 200) + 55;
-            int green = (int) (Math.random() * 200 + 55);
-            int blue = (int) (Math.random() * 200) + 55;
-
-            carColour = new Color(red, green, blue);
+//            //Pick Random Colour
+//            int red = (int) (Math.random() * 200) + 55;
+//            int green = (int) (Math.random() * 200 + 55);
+//            int blue = (int) (Math.random() * 200) + 55;
+//
+//            carColour = new Color(red, green, blue);
+            carColour = Color.YELLOW;
         }
     }
 
-    public boolean movesRight() {
+    private boolean movesRight() {
         return moveDirection.contains(Car.MOVES_RIGHT);
     }
 
-    public boolean movesLeft() {
+    private boolean movesLeft() {
         return moveDirection.contains(Car.MOVES_LEFT);
     }
 
-    public boolean movesUp() {
+    private boolean movesUp() {
         return moveDirection.contains(Car.MOVES_UP);
     }
 
-    public boolean movesDown() {
+    private boolean movesDown() {
         return moveDirection.contains(Car.MOVES_DOWN);
     }
 
@@ -91,13 +92,13 @@ public class Car {
 
     public void moveUp () {
         if (movesUp()) {
-            this.row--;
+            this.row++;
         }
     }
 
     public void moveDown () {
         if (movesDown()) {
-            this.row++;
+            this.row--;
         }
     }
 }

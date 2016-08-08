@@ -12,6 +12,9 @@ public class Main {
         new BoardManager("input.txt");
 
         //Draw to Canvas
-        new Canvas();
+        Canvas test = new Canvas();
+
+        BoardManager.runMove(2,1,BoardManager.MOVE_DOWN);
+        test.update();
     }
 }
