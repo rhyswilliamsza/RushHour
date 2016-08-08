@@ -1,4 +1,5 @@
-import Backend.Engine.Manager;
+import Backend.Engine.BoardManager;
+import FrontEnd.Canvas;
 
 /**
  * This file was created by Rhys Williams,
@@ -6,8 +7,11 @@ import Backend.Engine.Manager;
  * me@rhyswilliams.co.za
  */
 public class Main {
-    public static void main (String[] args) {
-        new Backend.Engine.Manager("input.txt");
-        System.out.println(Manager.isValid());
+    public static void main(String[] args) {
+        //Load File
+        new BoardManager("input.txt");
+
+        //Draw to Canvas
+        new Canvas();
     }
 }

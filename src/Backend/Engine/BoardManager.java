@@ -7,19 +7,23 @@ import Backend.Pieces.Car;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class Manager {
+public class BoardManager {
     private static int boardColumns;
     private static int boardRows;
     private static Car[] carArray;
+    public static final int MOVE_RIGHT = 0;
+    public static final int MOVE_LEFT = 1;
+    public static final int MOVE_UP = 2;
+    public static final int MOVE_DOWN = 3;
 
-    public Manager(String inputFileString) {
-        InputFile inputFile = new InputFile(inputFileString);
-        this.boardRows = inputFile.getM();
-        this.boardColumns = inputFile.getN();
-        this.carArray = inputFile.getCarArray();
+    public BoardManager(String inputFileString) {
+        BoardFile boardFile = new BoardFile(inputFileString);
+        this.boardRows = boardFile.getM();
+        this.boardColumns = boardFile.getN();
+        this.carArray = boardFile.getCarArray();
     }
 
-    public static Car[][] to2DArray () {
+    public static Car[][] to2DArray() {
         Car[][] board = new Car[boardRows][boardColumns];
         for (int i = 0; i < carArray.length; i++) {
             Car currentCar = carArray[i];
@@ -69,5 +73,24 @@ public class Manager {
 
     public static int getBoardRows() {
         return boardRows;
+    }
+
+    public static void runMove (int r, int c, int moveDirection) {
+        for (int i = 0; i < carArray.length; i++) {
+            if (carArray[i].getRow() == r && carArray[i].getColumn() == c) {
+                if (moveDirection == MOVE_RIGHT) {
+
+                }
+                if (moveDirection == MOVE_LEFT) {
+
+                }
+                if (moveDirection == MOVE_DOWN) {
+
+                }
+                if (moveDirection == MOVE_UP) {
+
+                }
+            }
+        }
     }
 }

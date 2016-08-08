@@ -21,7 +21,7 @@ public class Car {
     private List<Integer> moveDirection;
     private Color carColour;
 
-    public Car (int width, int height, int row, int column, List<Integer> moveDirection, boolean redCar) {
+    public Car(int width, int height, int row, int column, List<Integer> moveDirection, boolean redCar) {
         this.width = width;
         this.height = height;
         this.column = column;
@@ -30,25 +30,30 @@ public class Car {
         this.redCar = redCar;
 
         if (redCar) {
-            carColour = Color.RED;
+            carColour = new Color(236, 56, 44);
         } else {
-            carColour = Color.GREEN;
+            //Pick Random Colour
+            int red = (int) (Math.random() * 200) + 55;
+            int green = (int) (Math.random() * 200 + 55);
+            int blue = (int) (Math.random() * 200) + 55;
+
+            carColour = new Color(red, green, blue);
         }
     }
 
-    public boolean movesRight () {
+    public boolean movesRight() {
         return moveDirection.contains(Car.MOVES_RIGHT);
     }
 
-    public boolean movesLeft () {
+    public boolean movesLeft() {
         return moveDirection.contains(Car.MOVES_LEFT);
     }
 
-    public boolean movesUp () {
+    public boolean movesUp() {
         return moveDirection.contains(Car.MOVES_UP);
     }
 
-    public boolean movesDown () {
+    public boolean movesDown() {
         return moveDirection.contains(Car.MOVES_DOWN);
     }
 
@@ -64,15 +69,35 @@ public class Car {
         return column;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
     public int getRow() {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public Color getCarColour() {
+        return carColour;
+    }
+
+    public void moveRight () {
+        if (movesRight()) {
+            this.column++;
+        }
+    }
+
+    public void moveLeft () {
+        if (movesLeft()) {
+            this.column--;
+        }
+    }
+
+    public void moveUp () {
+        if (movesUp()) {
+            this.row--;
+        }
+    }
+
+    public void moveDown () {
+        if (movesDown()) {
+            this.row++;
+        }
     }
 }

@@ -13,23 +13,13 @@ import java.util.Scanner;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class InputFile {
+public class BoardFile {
+    boolean redCar = true;
     private int m;
     private int n;
-    boolean redCar = true;
     private List<Car> carList = new ArrayList<>();
 
-    public int getM() {
-        return m;
-    }
-    public int getN() {
-        return n;
-    }
-    public Car[] getCarArray () {
-        return carList.toArray(new Car[carList.size()]);
-    }
-
-    public InputFile(String fileName) {
+    public BoardFile(String fileName) {
         try {
             Scanner fileScan = new Scanner(new File(fileName));
 
@@ -71,7 +61,7 @@ public class InputFile {
                 }
 
                 //Generate Red Block
-                carList.add(new Car(width, height, r, c ,carDirections, redCar));
+                carList.add(new Car(width, height, r, c, carDirections, redCar));
                 redCar = false;
             }
 
@@ -81,5 +71,17 @@ public class InputFile {
         }
 
 
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public Car[] getCarArray() {
+        return carList.toArray(new Car[carList.size()]);
     }
 }
