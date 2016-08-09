@@ -11,15 +11,10 @@ public class RushHour {
     public static void main(String[] args) {
 
         //Load File
-        new BoardManager("input.txt");
+        new BoardManager(args[0]);
 
         //Draw to Canvas
         UIManager.startUI();
-
-
-        //TEMP
-        SolutionManager.runSolutionsFile("solution.txt");
-        //TEMP
 
         //Run Solution File
         if (args.length == 2) {
