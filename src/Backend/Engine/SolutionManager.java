@@ -12,7 +12,6 @@ import java.util.Scanner;
  * me@rhyswilliams.co.za
  */
 public class SolutionManager {
-    private static boolean run = true;
 
     public static void runSolutionsFile(String filePath) {
         File solutionFile = new File(filePath);

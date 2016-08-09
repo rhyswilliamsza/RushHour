@@ -7,7 +7,7 @@ import FrontEnd.UIManager;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class Run {
+public class RushHour {
     public static void main(String[] args) {
 
         //Load File
@@ -16,7 +16,14 @@ public class Run {
         //Draw to Canvas
         UIManager.startUI();
 
-        //Run Solution File
+
+        //TEMP
         SolutionManager.runSolutionsFile("solution.txt");
+        //TEMP
+
+        //Run Solution File
+        if (args.length == 2) {
+            SolutionManager.runSolutionsFile(args[1]);
+        }
     }
 }
