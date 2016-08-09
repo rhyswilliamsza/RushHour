@@ -32,13 +32,12 @@ public class Car {
         if (redCar) {
             carColour = new Color(236, 56, 44);
         } else {
-//            //Pick Random Colour
-//            int red = (int) (Math.random() * 200) + 55;
-//            int green = (int) (Math.random() * 200 + 55);
-//            int blue = (int) (Math.random() * 200) + 55;
-//
-//            carColour = new Color(red, green, blue);
-            carColour = Color.YELLOW;
+            //Pick Random Colour
+            int red = (int) (Math.random() * 200) + 55;
+            int green = (int) (Math.random() * 200 + 55);
+            int blue = (int) (Math.random() * 200) + 55;
+
+            carColour = new Color(red, green, blue);
         }
     }
 

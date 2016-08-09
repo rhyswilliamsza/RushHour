@@ -1,6 +1,7 @@
 package Backend.Engine;
 
 import Backend.Pieces.Car;
+import FrontEnd.UIManager;
 
 /**
  * This file was created by Rhys Williams,
@@ -8,13 +9,13 @@ import Backend.Pieces.Car;
  * me@rhyswilliams.co.za
  */
 public class BoardManager {
-    private static int boardColumns;
-    private static int boardRows;
-    private static Car[] carArray;
     public static final int MOVE_RIGHT = 0;
     public static final int MOVE_LEFT = 1;
     public static final int MOVE_UP = 2;
     public static final int MOVE_DOWN = 3;
+    private static int boardColumns;
+    private static int boardRows;
+    private static Car[] carArray;
 
     public BoardManager(String inputFileString) {
         BoardFile boardFile = new BoardFile(inputFileString);
@@ -25,28 +26,34 @@ public class BoardManager {
 
     public static Car[][] to2DArray() {
         Car[][] board = new Car[boardRows][boardColumns];
-        for (int i = 0; i < carArray.length; i++) {
-            Car currentCar = carArray[i];
-            for (int r = 0; r < currentCar.getHeight(); r++) {
-                for (int c = 0; c < currentCar.getWidth(); c++) {
-                    board[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = currentCar;
+        if (isValid(carArray)) {
+            for (int i = 0; i < carArray.length; i++) {
+                Car currentCar = carArray[i];
+                for (int r = 0; r < currentCar.getHeight(); r++) {
+                    for (int c = 0; c < currentCar.getWidth(); c++) {
+                        board[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = currentCar;
+                    }
                 }
             }
+            return board;
+        } else {
+            UIManager.showMessage("Something went wrong!");
+            return null;
         }
-        return board;
     }
 
-    public static boolean isValid() {
+    public static boolean isValid(Car[] checkCarArray) {
 
         //Check for at least one block
-        if (carArray.length == 0) {
+        if (checkCarArray.length == 0) {
+            UIManager.showMessage("Sorry, you need at least one red block!");
             return false;
         }
 
         //Check for Overlap
         boolean[][] checkOverlap = new boolean[boardRows][boardColumns];
-        for (int i = 0; i < carArray.length; i++) {
-            Car currentCar = carArray[i];
+        for (int i = 0; i < checkCarArray.length; i++) {
+            Car currentCar = checkCarArray[i];
             for (int r = 0; r < currentCar.getHeight(); r++) {
                 for (int c = 0; c < currentCar.getWidth(); c++) {
                     if (checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c]) {
@@ -57,15 +64,9 @@ public class BoardManager {
                 }
             }
         }
-
-        for (int i = 0; i < checkOverlap.length; i++) {
-            for (int j = 0; j < checkOverlap[i].length; j++) {
-                System.out.print(checkOverlap[i][j] + " ");
-            }
-            System.out.println();
-        }
         return true;
     }
+
 
     public static int getBoardColumns() {
         return boardColumns;
@@ -75,24 +76,31 @@ public class BoardManager {
         return boardRows;
     }
 
-    public static void runMove (int c, int r, int moveDirection) {
-        for (int i = 0; i < carArray.length; i++) {
-            System.out.println(carArray[i].getRow() + " " + carArray[i].getColumn() );
-            if (carArray[i].getRow() == r && carArray[i].getColumn() == c) {
-                System.out.println("FOUND");
+    public static void runMove(int c, int r, int moveDirection) {
+
+        Car[] newCarArray = carArray;
+
+        for (int i = 0; i < newCarArray.length; i++) {
+            if (newCarArray[i].getRow() == r && newCarArray[i].getColumn() == c) {
                 if (moveDirection == MOVE_RIGHT) {
-                    carArray[i].moveRight();
+                    newCarArray[i].moveRight();
                 }
                 if (moveDirection == MOVE_LEFT) {
-                    carArray[i].moveLeft();
+                    newCarArray[i].moveLeft();
                 }
                 if (moveDirection == MOVE_DOWN) {
-                    carArray[i].moveDown();
+                    newCarArray[i].moveDown();
                 }
                 if (moveDirection == MOVE_UP) {
-                    carArray[i].moveUp();
+                    newCarArray[i].moveUp();
                 }
             }
+        }
+
+        if (isValid(newCarArray)) {
+            carArray = newCarArray;
+        } else {
+            UIManager.showMessage("That move was invalid!");
         }
     }
 }

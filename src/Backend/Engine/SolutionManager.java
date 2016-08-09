@@ -1,5 +1,8 @@
 package Backend.Engine;
 
+import Backend.Pieces.Car;
+import FrontEnd.UIManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -16,8 +19,36 @@ public class SolutionManager {
         try {
             Scanner solutionScan = new Scanner (solutionFile);
 
-            while (solutionScan.hasNext()) {
+            while (solutionScan.hasNextLine()) {
+                //Delay each move by 1s
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
+                Scanner lineScan = new Scanner(solutionScan.nextLine()).useDelimiter(" ");
+                int c = lineScan.nextInt();
+                int r = lineScan.nextInt();
+                lineScan.close();
+
+                String directionString = solutionScan.nextLine();
+                int directionInt = -1;
+                if (directionString.contains("right")) {
+                    directionInt = BoardManager.MOVE_RIGHT;
+                }
+                if (directionString.contains("left")) {
+                    directionInt = BoardManager.MOVE_LEFT;
+                }
+                if (directionString.contains("up")) {
+                    directionInt = BoardManager.MOVE_UP;
+                }
+                if (directionString.contains("down")) {
+                    directionInt = BoardManager.MOVE_DOWN;
+                }
+
+                BoardManager.runMove(c,r,directionInt);
+                UIManager.runCanvasUpdate();
             }
 
             solutionScan.close();

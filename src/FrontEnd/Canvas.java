@@ -18,14 +18,26 @@ public class Canvas extends JFrame {
         super();
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainPanel = new JPanel(new GridLayout(BoardManager.getBoardRows(), BoardManager.getBoardColumns()));
-        draw();
+        drawGame();
     }
 
     public void update() {
-        draw();
+        drawGame();
     }
 
-    private void draw() {
+    public void showMessage (String message) {
+        JPanel messagePanel = new JPanel(new GridBagLayout());
+        messagePanel.setPreferredSize(new Dimension(BoardManager.getBoardColumns()*100,BoardManager.getBoardRows()*100));
+        messagePanel.setBackground(new Color(65, 131, 215));
+        JLabel messageLabel = new JLabel(message);
+        messagePanel.add(messageLabel);
+        this.getContentPane().removeAll();
+        this.add(messagePanel);
+        this.getContentPane().repaint();
+        this.pack();
+    }
+
+    private void drawGame() {
         Car[][] array = BoardManager.to2DArray();
         JPanel newPanel = new JPanel(new GridLayout(array.length, array[0].length));
 
@@ -37,7 +49,7 @@ public class Canvas extends JFrame {
                 try {
                     block.setBackground(array[r][c].getCarColour());
                 } catch (Exception e) {
-                    int greyScale = 255 - (int) ((Math.random()) * 30);
+                    int greyScale = 255 - (int) ((Math.random()) * 10);
                     block.setBackground(new Color(greyScale, greyScale, greyScale));
                 }
                 newPanel.add(block);
