@@ -77,25 +77,25 @@ public class Car {
         return carColour;
     }
 
-    public void moveRight () {
+    public void moveRight() {
         if (movesRight()) {
             this.column++;
         }
     }
 
-    public void moveLeft () {
+    public void moveLeft() {
         if (movesLeft()) {
             this.column--;
         }
     }
 
-    public void moveUp () {
+    public void moveUp() {
         if (movesUp()) {
             this.row++;
         }
     }
 
-    public void moveDown () {
+    public void moveDown() {
         if (movesDown()) {
             this.row--;
         }

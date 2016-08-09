@@ -16,34 +16,37 @@ public class BoardManager {
     private static int boardColumns;
     private static int boardRows;
     private static Car[] carArray;
+    private static boolean running = true;
 
     public BoardManager(String inputFileString) {
         BoardFile boardFile = new BoardFile(inputFileString);
         this.boardRows = boardFile.getM();
         this.boardColumns = boardFile.getN();
         this.carArray = boardFile.getCarArray();
+
+        if (!isValid()) {
+            UIManager.showMessage("The board file is corrupt!");
+        }
     }
 
     public static Car[][] to2DArray() {
         Car[][] board = new Car[boardRows][boardColumns];
-        if (isValid(carArray)) {
-            for (int i = 0; i < carArray.length; i++) {
-                Car currentCar = carArray[i];
-                for (int r = 0; r < currentCar.getHeight(); r++) {
-                    for (int c = 0; c < currentCar.getWidth(); c++) {
-                        board[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = currentCar;
-                    }
+        for (int i = 0; i < carArray.length; i++) {
+            Car currentCar = carArray[i];
+            for (int r = 0; r < currentCar.getHeight(); r++) {
+                for (int c = 0; c < currentCar.getWidth(); c++) {
+                    board[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = currentCar;
                 }
             }
-            return board;
-        } else {
-            UIManager.showMessage("Something went wrong!");
-            return null;
         }
+        return board;
+    }
+
+    public static boolean isValid() {
+        return isValid(carArray);
     }
 
     public static boolean isValid(Car[] checkCarArray) {
-
         //Check for at least one block
         if (checkCarArray.length == 0) {
             UIManager.showMessage("Sorry, you need at least one red block!");
@@ -57,6 +60,7 @@ public class BoardManager {
             for (int r = 0; r < currentCar.getHeight(); r++) {
                 for (int c = 0; c < currentCar.getWidth(); c++) {
                     if (checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c]) {
+                        running = false;
                         return false;
                     } else {
                         checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = true;
@@ -77,7 +81,6 @@ public class BoardManager {
     }
 
     public static void runMove(int c, int r, int moveDirection) {
-
         Car[] newCarArray = carArray;
 
         for (int i = 0; i < newCarArray.length; i++) {
@@ -100,7 +103,11 @@ public class BoardManager {
         if (isValid(newCarArray)) {
             carArray = newCarArray;
         } else {
-            UIManager.showMessage("That move was invalid!");
+            UIManager.showMessage("That move is invalid!");
         }
+    }
+
+    public static boolean isRunning () {
+        return running;
     }
 }

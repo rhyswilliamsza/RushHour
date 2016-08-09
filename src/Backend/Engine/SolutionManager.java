@@ -1,6 +1,5 @@
 package Backend.Engine;
 
-import Backend.Pieces.Car;
 import FrontEnd.UIManager;
 
 import java.io.File;
@@ -13,13 +12,14 @@ import java.util.Scanner;
  * me@rhyswilliams.co.za
  */
 public class SolutionManager {
+    private static boolean run = true;
 
-    public static void runSolutionsFile (String filePath) {
+    public static void runSolutionsFile(String filePath) {
         File solutionFile = new File(filePath);
         try {
-            Scanner solutionScan = new Scanner (solutionFile);
+            Scanner solutionScan = new Scanner(solutionFile);
 
-            while (solutionScan.hasNextLine()) {
+            while (solutionScan.hasNextLine() && BoardManager.isRunning()) {
                 //Delay each move by 1s
                 try {
                     Thread.sleep(1000);
@@ -47,7 +47,7 @@ public class SolutionManager {
                     directionInt = BoardManager.MOVE_DOWN;
                 }
 
-                BoardManager.runMove(c,r,directionInt);
+                BoardManager.runMove(c, r, directionInt);
                 UIManager.runCanvasUpdate();
             }
 
@@ -57,8 +57,5 @@ public class SolutionManager {
             e.printStackTrace();
         }
     }
-
-
-
 
 }

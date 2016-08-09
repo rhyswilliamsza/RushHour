@@ -7,15 +7,26 @@ package FrontEnd;
  */
 public class UIManager {
     private static Canvas canvas;
-    public static void startUI () {
+    private static FrontEnd.Message message;
+
+    public static void startUI() {
         canvas = new Canvas();
     }
 
-    public static void runCanvasUpdate () {
+    public static void runCanvasUpdate() {
         canvas.update();
     }
 
-    public static void showMessage (String message) {
-        canvas.showMessage(message);
+    public static void showMessage(String messageToShow) {
+        if (canvas != null) {
+            canvas.setVisible(false);
+        }
+
+        if (message != null) {
+            message.setMessage(messageToShow);
+        } else {
+            message = new FrontEnd.Message(messageToShow);
+        }
+
     }
 }
