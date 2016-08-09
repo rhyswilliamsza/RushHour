@@ -105,9 +105,16 @@ public class BoardManager {
         } else {
             UIManager.showMessage("That move is invalid!");
         }
+        checkWin();
     }
 
-    public static boolean isRunning () {
+    public static void checkWin() {
+        if (carArray[0].getColumn() + carArray[0].getWidth() == boardColumns) {
+            UIManager.showMessage("You won!");
+        }
+    }
+
+    public static boolean isRunning() {
         return running;
     }
 }

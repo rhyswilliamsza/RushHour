@@ -1,5 +1,7 @@
 package Backend.Pieces;
 
+import FrontEnd.UIManager;
+
 import java.awt.*;
 import java.util.List;
 
@@ -80,24 +82,32 @@ public class Car {
     public void moveRight() {
         if (movesRight()) {
             this.column++;
+        } else {
+            UIManager.showMessage("You requested an invalid move!");
         }
     }
 
     public void moveLeft() {
         if (movesLeft()) {
             this.column--;
+        } else {
+            UIManager.showMessage("You requested an invalid move!");
         }
     }
 
     public void moveUp() {
         if (movesUp()) {
             this.row++;
+        } else {
+            UIManager.showMessage("You requested an invalid move!");
         }
     }
 
     public void moveDown() {
         if (movesDown()) {
             this.row--;
+        } else {
+            UIManager.showMessage("You requested an invalid move!");
         }
     }
 }

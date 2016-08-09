@@ -21,6 +21,7 @@ public class Canvas extends JFrame {
             mainPanel = new JPanel(new GridLayout(BoardManager.getBoardRows(), BoardManager.getBoardColumns()));
             drawGame();
         }
+        this.setVisible(true);
     }
 
     public void update() {
@@ -50,7 +51,6 @@ public class Canvas extends JFrame {
             this.add(newPanel);
             this.pack();
             this.setLocationRelativeTo(null);
-            this.setVisible(true);
         }
     }
 }
