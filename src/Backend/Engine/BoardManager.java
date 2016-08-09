@@ -54,23 +54,26 @@ public class BoardManager {
         }
 
         //Check for Overlap
-        boolean[][] checkOverlap = new boolean[boardRows][boardColumns];
-        for (int i = 0; i < checkCarArray.length; i++) {
-            Car currentCar = checkCarArray[i];
-            for (int r = 0; r < currentCar.getHeight(); r++) {
-                for (int c = 0; c < currentCar.getWidth(); c++) {
-                    if (checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c]) {
-                        running = false;
-                        return false;
-                    } else {
-                        checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = true;
+        try {
+            boolean[][] checkOverlap = new boolean[boardRows][boardColumns];
+            for (int i = 0; i < checkCarArray.length; i++) {
+                Car currentCar = checkCarArray[i];
+                for (int r = 0; r < currentCar.getHeight(); r++) {
+                    for (int c = 0; c < currentCar.getWidth(); c++) {
+                        if (checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c]) {
+                            running = false;
+                            return false;
+                        } else {
+                            checkOverlap[(boardRows - 1) - currentCar.getRow() - r][currentCar.getColumn() + c] = true;
+                        }
                     }
                 }
             }
+        } catch (Exception e) {
+            UIManager.showMessage("One of your pieces does not lie on the board!");
         }
         return true;
     }
-
 
     public static int getBoardColumns() {
         return boardColumns;
