@@ -19,6 +19,7 @@ public class BoardFile {
     private int n;
     private List<Car> carList = new ArrayList<>();
 
+    //Loads BoardFile from given fileName
     public BoardFile(String fileName) {
         try {
             Scanner fileScan = new Scanner(new File(fileName));

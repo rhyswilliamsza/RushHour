@@ -18,6 +18,7 @@ public class BoardManager {
     private static Car[] carArray;
     private static boolean running = true;
 
+    //BoardManager - Loads Board File from Input
     public BoardManager(String inputFileString) {
         BoardFile boardFile = new BoardFile(inputFileString);
         this.boardRows = boardFile.getM();
@@ -29,6 +30,7 @@ public class BoardManager {
         }
     }
 
+    //Converts array to 2D Array
     public static Car[][] to2DArray() {
         Car[][] board = new Car[boardRows][boardColumns];
         for (int i = 0; i < carArray.length; i++) {
@@ -42,10 +44,12 @@ public class BoardManager {
         return board;
     }
 
+    //Checks validity of current board
     public static boolean isValid() {
         return isValid(carArray);
     }
 
+    //Checks validity of given board
     public static boolean isValid(Car[] checkCarArray) {
         //Check for at least one block
         if (checkCarArray.length == 0) {
@@ -83,6 +87,7 @@ public class BoardManager {
         return boardRows;
     }
 
+    //Runs move on given c, r with direction moveDirection
     public static void runMove(int c, int r, int moveDirection) {
         Car[] newCarArray = carArray;
 
@@ -111,6 +116,7 @@ public class BoardManager {
         checkWin();
     }
 
+    //Checks if the red block is at the right hand side!
     public static void checkWin() {
         if (carArray[0].getColumn() + carArray[0].getWidth() == boardColumns) {
             UIManager.showMessage("You won!");

@@ -16,7 +16,7 @@ public class RushHour {
         //Draw to Canvas
         UIManager.startUI();
 
-        //Run Solution File
+        //Run Solution File if 2nd Args Given
         if (args.length == 2) {
             SolutionManager.runSolutionsFile(args[1]);
         }

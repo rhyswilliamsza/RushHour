@@ -1,5 +1,4 @@
-package Backend.Engine;
-
+package Backend.E
 import FrontEnd.UIManager;
 
 import java.io.File;
@@ -13,6 +12,7 @@ import java.util.Scanner;
  */
 public class SolutionManager {
 
+    //Reads solution file and parses each move to the BoardManager
     public static void runSolutionsFile(String filePath) {
         File solutionFile = new File(filePath);
         try {

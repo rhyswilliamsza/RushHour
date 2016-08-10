@@ -14,6 +14,7 @@ import java.awt.*;
 public class Canvas extends JFrame {
     JPanel mainPanel;
 
+    //Rush Hour Canvas
     public Canvas() {
         super();
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -28,6 +29,7 @@ public class Canvas extends JFrame {
         drawGame();
     }
 
+    //Draw the board by pulling information from the BoardManager
     private void drawGame() {
         if (BoardManager.isValid()) {
             Car[][] array = BoardManager.to2DArray();
