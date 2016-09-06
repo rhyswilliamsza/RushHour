@@ -38,7 +38,22 @@ public class Canvas extends JFrame {
             for (int r = 0; r < BoardManager.getBoardRows(); r++) {
                 for (int c = 0; c < BoardManager.getBoardColumns(); c++) {
                     JPanel block = new JPanel();
-                    block.setPreferredSize(new Dimension(100, 100));
+
+                    //Check Dimensions
+                    int blockSize = 100;
+                    if (BoardManager.getBoardRows() >= 6) {
+                        if (800/BoardManager.getBoardRows() < blockSize) {
+                            blockSize = 800/BoardManager.getBoardRows();
+                        }
+                    }
+
+                    if (BoardManager.getBoardColumns() >= 6) {
+                        if (800/BoardManager.getBoardColumns() < blockSize) {
+                            blockSize = 800/BoardManager.getBoardColumns();
+                        }
+                    }
+
+                    block.setPreferredSize(new Dimension(blockSize, blockSize));
                     block.setBorder(BorderFactory.createLineBorder(new Color(58, 58, 58)));
                     try {
                         block.setBackground(array[r][c].getCarColour());
