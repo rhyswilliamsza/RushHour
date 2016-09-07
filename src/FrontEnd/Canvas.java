@@ -42,14 +42,14 @@ public class Canvas extends JFrame {
                     //Check Dimensions
                     int blockSize = 100;
                     if (BoardManager.board.getRows() >= 6) {
-                        if (800/BoardManager.board.getRows() < blockSize) {
-                            blockSize = 800/BoardManager.board.getRows();
+                        if (800 / BoardManager.board.getRows() < blockSize) {
+                            blockSize = 800 / BoardManager.board.getRows();
                         }
                     }
 
                     if (BoardManager.board.getColumns() >= 6) {
-                        if (800/BoardManager.board.getColumns() < blockSize) {
-                            blockSize = 800/BoardManager.board.getColumns();
+                        if (800 / BoardManager.board.getColumns() < blockSize) {
+                            blockSize = 800 / BoardManager.board.getColumns();
                         }
                     }
 

@@ -1,7 +1,5 @@
 package Backend.Objects;
 
-import FrontEnd.UIManager;
-
 import java.awt.*;
 import java.util.List;
 
@@ -22,6 +20,16 @@ public class Car {
     private int row;
     private List<Integer> moveDirection;
     private Color carColour;
+
+    public Car copy() {
+        Car newCar = new Car(width, height, row, column, moveDirection, redCar);
+        newCar.setCarColour(carColour);
+        return newCar;
+    }
+
+    public void setCarColour(Color carColour) {
+        this.carColour = carColour;
+    }
 
     public Car(int width, int height, int row, int column, List<Integer> moveDirection, boolean redCar) {
         this.width = width;
@@ -83,7 +91,7 @@ public class Car {
         if (movesRight()) {
             this.column++;
         } else {
-            UIManager.showMessage("You requested an invalid move!");
+            //UIManager.showMessage("You requested an invalid move!");
         }
     }
 
@@ -91,7 +99,7 @@ public class Car {
         if (movesLeft()) {
             this.column--;
         } else {
-            UIManager.showMessage("You requested an invalid move!");
+            //UIManager.showMessage("You requested an invalid move!");
         }
     }
 
@@ -99,7 +107,7 @@ public class Car {
         if (movesUp()) {
             this.row++;
         } else {
-            UIManager.showMessage("You requested an invalid move!");
+            //UIManager.showMessage("You requested an invalid move!");
         }
     }
 
@@ -107,7 +115,7 @@ public class Car {
         if (movesDown()) {
             this.row--;
         } else {
-            UIManager.showMessage("You requested an invalid move!");
+            //UIManager.showMessage("You requested an invalid move!");
         }
     }
 }

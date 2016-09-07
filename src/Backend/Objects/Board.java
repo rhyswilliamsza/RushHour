@@ -3,6 +3,8 @@ package Backend.Objects;
 import Backend.Engine.BoardManager;
 import FrontEnd.UIManager;
 
+import java.util.Arrays;
+
 /**
  * This file was created by Rhys Williams,
  * www.rhyswilliams.co.za
@@ -12,6 +14,19 @@ public class Board {
     private int columns;
     private int rows;
     private Car[] carArray;
+
+    public Board copy() {
+        Board boardCopy = new Board();
+        boardCopy.setColumns(columns);
+        boardCopy.setRows(rows);
+        Car[] newCarArray = new Car[carArray.length];
+        for (int i = 0; i < carArray.length; i++) {
+            newCarArray[i] = carArray[i].copy();
+        }
+        boardCopy.setCarArray(newCarArray);
+
+        return boardCopy;
+    }
 
     public int getRows() {
         return rows;
@@ -51,12 +66,13 @@ public class Board {
         return board;
     }
 
-    public boolean isValid () {
+    public boolean isValid() {
         return isValid(carArray);
     }
 
     /**
      * Check if the provided board is valid
+     *
      * @return
      */
     public boolean isValid(Car[] testArray) {
@@ -82,7 +98,8 @@ public class Board {
                 }
             }
         } catch (Exception e) {
-            UIManager.showMessage("One of your pieces does not lie on the board!");
+            return false;
+            //UIManager.showMessage("One of your pieces does not lie on the board!");
         }
         return true;
     }
@@ -90,6 +107,7 @@ public class Board {
     /**
      * Does a move using c,r, moveDirection.
      * First tries move, and if invalid, notifies of the error.
+     *
      * @param c
      * @param r
      * @param moveDirection
@@ -117,8 +135,40 @@ public class Board {
         if (isValid(newCarArray)) {
             carArray = newCarArray;
         } else {
-            UIManager.showMessage("That move is invalid!");
+            //UIManager.showMessage("That move is invalid!");
         }
         BoardManager.checkWin();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board = (Board) o;
+
+        if (columns != board.columns) return false;
+        if (rows != board.rows) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(carArray, board.carArray);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = columns;
+        result = 31 * result + rows;
+        result = 31 * result + Arrays.hashCode(carArray);
+        return result;
+    }
+
+    /**
+     * Checks if the player has won
+     */
+    public boolean checkWin() {
+        if (carArray[0].getColumn() + carArray[0].getWidth() == columns) {
+            return true;
+        }
+        return false;
     }
 }

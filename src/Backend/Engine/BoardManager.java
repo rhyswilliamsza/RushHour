@@ -13,8 +13,8 @@ public class BoardManager {
     public static final int MOVE_LEFT = 1;
     public static final int MOVE_UP = 2;
     public static final int MOVE_DOWN = 3;
-    private static boolean running = true;
     public static Board board;
+    private static boolean running = true;
 
     //BoardManager - Loads Board File from Input
     public BoardManager(String inputFileString) {
@@ -26,14 +26,12 @@ public class BoardManager {
 
         if (!board.isValid()) {
             UIManager.showMessage("The board file is corrupt!");
+            running = false;
         }
     }
 
-    /**
-     * Checks if the player has won
-     */
     public static void checkWin() {
-        if (board.getCarArray()[0].getColumn() + board.getCarArray()[0].getWidth() == board.getColumns()) {
+        if (board.checkWin()) {
             UIManager.showMessage("You won!");
         }
     }
