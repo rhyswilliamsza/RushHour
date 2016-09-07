@@ -46,7 +46,7 @@ public class SolutionManager {
                     directionInt = BoardManager.MOVE_DOWN;
                 }
 
-                BoardManager.runMove(c, r, directionInt);
+                BoardManager.board.runMove(c, r, directionInt);
                 UIManager.runCanvasUpdate();
             }
 

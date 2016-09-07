@@ -1,7 +1,7 @@
 package FrontEnd;
 
 import Backend.Engine.BoardManager;
-import Backend.Pieces.Car;
+import Backend.Objects.Car;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +18,8 @@ public class Canvas extends JFrame {
     public Canvas() {
         super();
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        if (BoardManager.isValid()) {
-            mainPanel = new JPanel(new GridLayout(BoardManager.getBoardRows(), BoardManager.getBoardColumns()));
+        if (BoardManager.board.isValid()) {
+            mainPanel = new JPanel(new GridLayout(BoardManager.board.getRows(), BoardManager.board.getColumns()));
             drawGame();
         }
         this.setVisible(true);
@@ -31,25 +31,25 @@ public class Canvas extends JFrame {
 
     //Draw the board by pulling information from the BoardManager
     private void drawGame() {
-        if (BoardManager.isValid()) {
-            Car[][] array = BoardManager.to2DArray();
+        if (BoardManager.board.isValid()) {
+            Car[][] array = BoardManager.board.to2DArray();
             JPanel newPanel = new JPanel(new GridLayout(array.length, array[0].length));
 
-            for (int r = 0; r < BoardManager.getBoardRows(); r++) {
-                for (int c = 0; c < BoardManager.getBoardColumns(); c++) {
+            for (int r = 0; r < BoardManager.board.getRows(); r++) {
+                for (int c = 0; c < BoardManager.board.getColumns(); c++) {
                     JPanel block = new JPanel();
 
                     //Check Dimensions
                     int blockSize = 100;
-                    if (BoardManager.getBoardRows() >= 6) {
-                        if (800/BoardManager.getBoardRows() < blockSize) {
-                            blockSize = 800/BoardManager.getBoardRows();
+                    if (BoardManager.board.getRows() >= 6) {
+                        if (800/BoardManager.board.getRows() < blockSize) {
+                            blockSize = 800/BoardManager.board.getRows();
                         }
                     }
 
-                    if (BoardManager.getBoardColumns() >= 6) {
-                        if (800/BoardManager.getBoardColumns() < blockSize) {
-                            blockSize = 800/BoardManager.getBoardColumns();
+                    if (BoardManager.board.getColumns() >= 6) {
+                        if (800/BoardManager.board.getColumns() < blockSize) {
+                            blockSize = 800/BoardManager.board.getColumns();
                         }
                     }
 

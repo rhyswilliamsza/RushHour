@@ -1,4 +1,4 @@
-package Backend.Pieces;
+package Backend.Objects;
 
 import FrontEnd.UIManager;
 

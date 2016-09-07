@@ -8,6 +8,14 @@ import FrontEnd.UIManager;
  * me@rhyswilliams.co.za
  */
 public class RushHour {
+    /**
+     * RushHour is a game consists of a collection of cars of varying sizes,
+     * set either horizontally or vertically, on a NxM grid that has a single exit.
+     *
+     * The purpose of the game is to get a red car to the exit,
+     * by moving the other cars out of the way.
+     * @param args
+     */
     public static void main(String[] args) {
 
         //Load File
