@@ -1,5 +1,6 @@
 import Backend.Engine.BoardManager;
 import Backend.Engine.SolutionManager;
+import Backend.Engine.SolverManager;
 import FrontEnd.UIManager;
 
 /**
@@ -28,6 +29,8 @@ public class RushHour {
         //Run Solution File if 2nd Args Given
         if (args.length == 2) {
             SolutionManager.runSolutionsFile(args[1]);
+        } else {
+            SolutionManager.runSolutionsString(SolverManager.Solve(BoardManager.board));
         }
     }
 }

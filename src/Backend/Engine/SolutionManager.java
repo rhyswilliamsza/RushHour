@@ -13,49 +13,56 @@ import java.util.Scanner;
  */
 public class SolutionManager {
 
+    public static void runSolutionsString(String solutionString) {
+        Scanner solutionScan = new Scanner(solutionString);
+        runSolution(solutionScan);
+    }
+
     //Reads solution file and parses each move to the BoardManager
     public static void runSolutionsFile(String filePath) {
         File solutionFile = new File(filePath);
         try {
             Scanner solutionScan = new Scanner(solutionFile);
-
-            while (solutionScan.hasNextLine() && BoardManager.isRunning()) {
-                //Delay each move by 1s
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Scanner lineScan = new Scanner(solutionScan.nextLine()).useDelimiter(" ");
-                int c = lineScan.nextInt();
-                int r = lineScan.nextInt();
-                lineScan.close();
-
-                String directionString = solutionScan.nextLine();
-                int directionInt = -1;
-                if (directionString.contains("right")) {
-                    directionInt = BoardManager.MOVE_RIGHT;
-                }
-                if (directionString.contains("left")) {
-                    directionInt = BoardManager.MOVE_LEFT;
-                }
-                if (directionString.contains("up")) {
-                    directionInt = BoardManager.MOVE_UP;
-                }
-                if (directionString.contains("down")) {
-                    directionInt = BoardManager.MOVE_DOWN;
-                }
-
-                BoardManager.board.runMove(c, r, directionInt);
-                UIManager.runCanvasUpdate();
-            }
-
-            solutionScan.close();
-
+            runSolution(solutionScan);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void runSolution(Scanner solutionScan) {
+        while (solutionScan.hasNextLine() && BoardManager.isRunning()) {
+            //Delay each move by 1s
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Scanner lineScan = new Scanner(solutionScan.nextLine()).useDelimiter(" ");
+            int c = lineScan.nextInt();
+            int r = lineScan.nextInt();
+            lineScan.close();
+
+            String directionString = solutionScan.nextLine();
+            int directionInt = -1;
+            if (directionString.contains("right")) {
+                directionInt = BoardManager.MOVE_RIGHT;
+            }
+            if (directionString.contains("left")) {
+                directionInt = BoardManager.MOVE_LEFT;
+            }
+            if (directionString.contains("up")) {
+                directionInt = BoardManager.MOVE_UP;
+            }
+            if (directionString.contains("down")) {
+                directionInt = BoardManager.MOVE_DOWN;
+            }
+
+            BoardManager.board.runMove(c, r, directionInt);
+            UIManager.runCanvasUpdate();
+        }
+
+        solutionScan.close();
     }
 
 }

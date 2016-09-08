@@ -2,10 +2,7 @@ package Backend.Engine;
 
 import Backend.Objects.Board;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * This file was created by Rhys Williams,
@@ -16,13 +13,8 @@ public class SolverManager {
     private static Board initialConfig;
     private static Map<Board, Board> map = new HashMap<>();
     private static Queue<Board> queue = new LinkedList<>();
+    private static String solutionString = null;
     private static boolean found = false;
-
-    public static void main(String[] args) {
-        new BoardManager("input.txt");
-        Board test = BoardManager.board;
-        Solve(test);
-    }
 
     /**
      * One calls upon this method, providing an initial board object,
@@ -33,7 +25,7 @@ public class SolverManager {
      *
      * @param initial An initial board file. The one you wish to solve
      */
-    public static void Solve(Board initial) {
+    public static String Solve(Board initial) {
         //Copy the initial to resolve reference issues.
         initialConfig = initial.copy();
 
@@ -44,9 +36,10 @@ public class SolverManager {
         Board current = null;
         while (!queue.isEmpty() && !found) {
             current = queue.remove();
-            System.out.println(current.toString());
             findMoves(current);
         }
+
+        return solutionString;
     }
 
     /**
@@ -58,26 +51,30 @@ public class SolverManager {
      */
     public static void runWin(Board winBoard) {
         found = true;
-        System.out.println(winBoard.toString());
-        Board test = map.get(winBoard);
         int counter = 0;
+
+        Board temp = map.get(winBoard);
+        List<Board> list = new ArrayList<>();
+        list.add(winBoard);
         do {
             counter++;
-            test = map.get(test);
-        } while (test != null);
+            list.add(temp);
+            temp = map.get(temp);
+        } while (temp != null);
 
-        System.out.println(counter + " moves.");
+
+        solutionString = solutionToSolutionString(list);
 
     }
 
     /**
      * Inspiration for this class was taken from:
      * http://stackoverflow.com/questions/2877724/rush-hour-solving-the-game
-     *
+     * <p>
      * LodgeMove incorporates a HashMap to track the tree of solutions.
      * It uses a queue to tell the program to search the newly created modified board objects.
      *
-     * @param moddedBoard The board with a modified piece
+     * @param moddedBoard  The board with a modified piece
      * @param currentBoard The board from the previous step (the node before the modified board in the has map tree)
      */
     private static void lodgeMove(Board moddedBoard, Board currentBoard) {
@@ -102,7 +99,7 @@ public class SolverManager {
 
     /**
      * This method scans creates a new instance of a board for every piece that can move.
-     *
+     * <p>
      * These instances are passed onto lodgeMove, which adds them to the solutions tree,
      * as well as to the queue for the next step.
      *
@@ -135,5 +132,48 @@ public class SolverManager {
                 lodgeMove(newBoardRight, currentBoard);
             }
         }
+    }
+
+    public static String solutionToSolutionString(List<Board> list) {
+        String solutionString = "";
+        Board oneBoard;
+        Board twoBoard;
+
+        twoBoard = list.remove(list.size() - 1);
+        while (list.size() > 0) {
+            oneBoard = twoBoard;
+            twoBoard = list.remove(list.size() - 1);
+
+            for (int i = 0; i < oneBoard.getCarArray().length; i++) {
+                if (oneBoard.getCarArray()[i].getRow() > twoBoard.getCarArray()[i].getRow()) {
+                    solutionString += (oneBoard.getCarArray()[i].getColumn() + " " + oneBoard.getCarArray()[i].getRow());
+                    solutionString += "\n";
+                    solutionString += ("down");
+                    solutionString += "\n";
+                }
+
+                if (oneBoard.getCarArray()[i].getRow() < twoBoard.getCarArray()[i].getRow()) {
+                    solutionString += (oneBoard.getCarArray()[i].getColumn() + " " + oneBoard.getCarArray()[i].getRow());
+                    solutionString += "\n";
+                    solutionString += ("up");
+                    solutionString += "\n";
+                }
+
+                if (oneBoard.getCarArray()[i].getColumn() > twoBoard.getCarArray()[i].getColumn()) {
+                    solutionString += (oneBoard.getCarArray()[i].getColumn() + " " + oneBoard.getCarArray()[i].getRow());
+                    solutionString += "\n";
+                    solutionString += ("left");
+                    solutionString += "\n";
+                }
+
+                if (oneBoard.getCarArray()[i].getColumn() < twoBoard.getCarArray()[i].getColumn()) {
+                    solutionString += (oneBoard.getCarArray()[i].getColumn() + " " + oneBoard.getCarArray()[i].getRow());
+                    solutionString += "\n";
+                    solutionString += ("right");
+                    solutionString += "\n";
+                }
+            }
+        }
+        return solutionString;
     }
 }
