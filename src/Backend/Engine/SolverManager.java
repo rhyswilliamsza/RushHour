@@ -10,7 +10,6 @@ import java.util.*;
  * me@rhyswilliams.co.za
  */
 public class SolverManager {
-    private static Board initialConfig;
     private static Map<Board, Board> map = new HashMap<>();
     private static Queue<Board> queue = new LinkedList<>();
     private static String solutionString = null;
@@ -27,7 +26,7 @@ public class SolverManager {
      */
     public static String Solve(Board initial) {
         //Copy the initial to resolve reference issues.
-        initialConfig = initial.copy();
+        Board initialConfig = initial.copy();
 
         //Lodge the first move upon null, thereby activating 'layer 1' of the BFS
         lodgeMove(initialConfig, null);
@@ -49,7 +48,7 @@ public class SolverManager {
      *
      * @param winBoard The board layout of the successfully completed puzzle, as supplied by lodgeMove
      */
-    public static void runWin(Board winBoard) {
+    private static void runWin(Board winBoard) {
         found = true;
         int counter = 0;
 
@@ -140,7 +139,7 @@ public class SolverManager {
      * @param list List of boards
      * @return Solution file in String format
      */
-    public static String solutionToSolutionString(List<Board> list) {
+    private static String solutionToSolutionString(List<Board> list) {
         String solutionString = "";
         Board oneBoard;
         Board twoBoard;

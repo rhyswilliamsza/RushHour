@@ -8,8 +8,8 @@ import java.awt.*;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class Message extends JFrame {
-    JLabel messageLabel;
+class Message extends JFrame {
+    private JLabel messageLabel;
 
     /**
      * Displays message of type String in it's own window.

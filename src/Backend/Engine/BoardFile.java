@@ -13,8 +13,8 @@ import java.util.Scanner;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class BoardFile {
-    boolean redCar = true;
+class BoardFile {
+    private boolean redCar = true;
     private int m;
     private int n;
     private List<Car> carList = new ArrayList<>();

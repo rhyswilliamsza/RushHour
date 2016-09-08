@@ -8,7 +8,7 @@ import FrontEnd.UIManager;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class RushHour {
+class RushHour {
     /**
      * According to our project spec,
      * RushHour is a game consists of a collection of cars of varying sizes,
@@ -16,11 +16,11 @@ public class RushHour {
      * <p>
      * The purpose of the game is to get a red car to the exit,
      * by moving the other cars out of the way.
-     *
+     * <p>
      * There are two methods of game play. If two program arguments are given,
      * the program will use the file provided by the second argument as a 'solutions' file.
      * Otherwise, the program will endeavour to solve the puzzle using a 'SolverManager' class.
-     *
+     * <p>
      * Please see SolverManager for more information.
      *
      * @param args Program arguments. First, Board File. Second, if given, Solutions file.

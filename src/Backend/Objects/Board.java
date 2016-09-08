@@ -73,6 +73,7 @@ public class Board {
 
     /**
      * Converts the board to a 2D array for use by the rendering engine.
+     *
      * @return
      */
     public Car[][] to2DArray() {
@@ -92,6 +93,7 @@ public class Board {
      * Used for debugging.
      * P - Piece
      * R - Red Block
+     *
      * @return
      */
     public String toString() {
@@ -122,7 +124,7 @@ public class Board {
      *
      * @return
      */
-    public boolean isValid(Car[] testArray) {
+    private boolean isValid(Car[] testArray) {
         //Check for at least one block
         if (testArray.length == 0) {
             UIManager.showMessage("Sorry, you need at least one red block!");
@@ -213,9 +215,6 @@ public class Board {
      * Checks if the player has won
      */
     public boolean checkWin() {
-        if (carArray[0].getColumn() + carArray[0].getWidth() == columns) {
-            return true;
-        }
-        return false;
+        return carArray[0].getColumn() + carArray[0].getWidth() == columns;
     }
 }

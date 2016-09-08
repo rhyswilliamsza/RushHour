@@ -11,8 +11,8 @@ import java.awt.*;
  * www.rhyswilliams.co.za
  * me@rhyswilliams.co.za
  */
-public class Canvas extends JFrame {
-    JPanel mainPanel;
+class Canvas extends JFrame {
+    private JPanel mainPanel;
 
     /**
      * Rendering engine and canvas for the visual representation of my board

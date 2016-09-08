@@ -21,16 +21,6 @@ public class Car {
     private List<Integer> moveDirection;
     private Color carColour;
 
-    public Car copy() {
-        Car newCar = new Car(width, height, row, column, moveDirection, redCar);
-        newCar.setCarColour(carColour);
-        return newCar;
-    }
-
-    public void setCarColour(Color carColour) {
-        this.carColour = carColour;
-    }
-
     public Car(int width, int height, int row, int column, List<Integer> moveDirection, boolean redCar) {
         this.width = width;
         this.height = height;
@@ -49,6 +39,12 @@ public class Car {
 
             carColour = new Color(red, green, blue);
         }
+    }
+
+    public Car copy() {
+        Car newCar = new Car(width, height, row, column, moveDirection, redCar);
+        newCar.setCarColour(carColour);
+        return newCar;
     }
 
     public String toString() {
@@ -93,6 +89,10 @@ public class Car {
 
     public Color getCarColour() {
         return carColour;
+    }
+
+    private void setCarColour(Color carColour) {
+        this.carColour = carColour;
     }
 
     public void moveRight() {

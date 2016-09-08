@@ -13,8 +13,8 @@ public class BoardManager {
     public static final int MOVE_LEFT = 1;
     public static final int MOVE_UP = 2;
     public static final int MOVE_DOWN = 3;
-    private static boolean running = true;
     public static Board board;
+    private static boolean running = true;
 
     /**
      * This class manages the currently displayed board (on screen).
