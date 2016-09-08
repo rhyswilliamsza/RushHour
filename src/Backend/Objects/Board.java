@@ -66,6 +66,25 @@ public class Board {
         return board;
     }
 
+    public String toString() {
+        String out = "";
+        Car[][] board = to2DArray();
+        for (int i = 0; i < rows; i++) {
+            out += "\n";
+            for (int j = 0; j < columns; j++) {
+                try {
+                    String toString = board[i][j].toString();
+                    if (toString != null) {
+                        out += toString;
+                    }
+                } catch (Exception e) {
+                    out += ".";
+                }
+            }
+        }
+        return out;
+    }
+
     public boolean isValid() {
         return isValid(carArray);
     }

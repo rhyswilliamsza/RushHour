@@ -51,19 +51,27 @@ public class Car {
         }
     }
 
-    private boolean movesRight() {
+    public String toString() {
+        if (redCar) {
+            return "R";
+        } else {
+            return "P";
+        }
+    }
+
+    public boolean movesRight() {
         return moveDirection.contains(Car.MOVES_RIGHT);
     }
 
-    private boolean movesLeft() {
+    public boolean movesLeft() {
         return moveDirection.contains(Car.MOVES_LEFT);
     }
 
-    private boolean movesUp() {
+    public boolean movesUp() {
         return moveDirection.contains(Car.MOVES_UP);
     }
 
-    private boolean movesDown() {
+    public boolean movesDown() {
         return moveDirection.contains(Car.MOVES_DOWN);
     }
 
@@ -117,5 +125,34 @@ public class Car {
         } else {
             //UIManager.showMessage("You requested an invalid move!");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        if (redCar != car.redCar) return false;
+        if (width != car.width) return false;
+        if (height != car.height) return false;
+        if (column != car.column) return false;
+        if (row != car.row) return false;
+        if (!moveDirection.equals(car.moveDirection)) return false;
+        return carColour.equals(car.carColour);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (redCar ? 1 : 0);
+        result = 31 * result + width;
+        result = 31 * result + height;
+        result = 31 * result + column;
+        result = 31 * result + row;
+        result = 31 * result + moveDirection.hashCode();
+        result = 31 * result + carColour.hashCode();
+        return result;
     }
 }
