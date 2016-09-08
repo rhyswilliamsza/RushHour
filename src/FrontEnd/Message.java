@@ -11,6 +11,11 @@ import java.awt.*;
 public class Message extends JFrame {
     JLabel messageLabel;
 
+    /**
+     * Displays message of type String in it's own window.
+     *
+     * @param message Message in String format.
+     */
     public Message(String message) {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JPanel messagePanel = new JPanel(new GridBagLayout());

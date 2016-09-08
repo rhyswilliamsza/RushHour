@@ -13,13 +13,18 @@ public class BoardManager {
     public static final int MOVE_LEFT = 1;
     public static final int MOVE_UP = 2;
     public static final int MOVE_DOWN = 3;
-    public static Board board;
     private static boolean running = true;
+    public static Board board;
 
-    //BoardManager - Loads Board File from Input
+    /**
+     * This class manages the currently displayed board (on screen).
+     * It also manages checking for a win.
+     *
+     * @param inputFileString
+     */
     public BoardManager(String inputFileString) {
-        board = new Board();
         BoardFile boardFile = new BoardFile(inputFileString);
+        board = new Board();
         board.setRows(boardFile.getM());
         board.setColumns(boardFile.getN());
         board.setCarArray(boardFile.getCarArray());

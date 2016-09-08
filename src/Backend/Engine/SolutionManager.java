@@ -13,12 +13,21 @@ import java.util.Scanner;
  */
 public class SolutionManager {
 
+    /**
+     * Runs a solution file, as provided in String format.
+     *
+     * @param solutionString String format of a solution file.
+     */
     public static void runSolutionsString(String solutionString) {
         Scanner solutionScan = new Scanner(solutionString);
         runSolution(solutionScan);
     }
 
-    //Reads solution file and parses each move to the BoardManager
+    /**
+     * Reads a solution file, as provided by a file path.
+     *
+     * @param filePath File path format of a solution file.
+     */
     public static void runSolutionsFile(String filePath) {
         File solutionFile = new File(filePath);
         try {
@@ -29,6 +38,12 @@ public class SolutionManager {
         }
     }
 
+    /**
+     * Run solution file. This analyses each move, checks if it is valid,
+     * and the parses it to the currently displayed board.
+     *
+     * @param solutionScan Scanner containing the solution file.
+     */
     private static void runSolution(Scanner solutionScan) {
         while (solutionScan.hasNextLine() && BoardManager.isRunning()) {
             //Delay each move by 1s

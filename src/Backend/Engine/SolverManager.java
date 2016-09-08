@@ -62,9 +62,8 @@ public class SolverManager {
             temp = map.get(temp);
         } while (temp != null);
 
-
+        System.out.println("This board was solved in " + counter + " moves.");
         solutionString = solutionToSolutionString(list);
-
     }
 
     /**
@@ -134,6 +133,13 @@ public class SolverManager {
         }
     }
 
+    /**
+     * This method converts the solution (list of boards, each containing one step),
+     * to a solution file for use with the BoardManager.
+     *
+     * @param list List of boards
+     * @return Solution file in String format
+     */
     public static String solutionToSolutionString(List<Board> list) {
         String solutionString = "";
         Board oneBoard;

@@ -19,7 +19,12 @@ public class BoardFile {
     private int n;
     private List<Car> carList = new ArrayList<>();
 
-    //Loads BoardFile from given fileName
+    /**
+     * This class loads the BoardFile from the given filename,
+     * and ensures it is broken down correctly for reading.
+     *
+     * @param fileName
+     */
     public BoardFile(String fileName) {
         try {
             Scanner fileScan = new Scanner(new File(fileName));

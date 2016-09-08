@@ -15,6 +15,25 @@ public class Board {
     private int rows;
     private Car[] carArray;
 
+    /**
+     * This class contains an instance of a board.
+     * This includes its dimensions (rows, columns), as well as a carArray containing it's pieces.
+     * <p>
+     * Boards like this are used to
+     */
+    public Board() {
+        //None required. Edited manually.
+    }
+
+    /**
+     * This class is required to copy the board object.
+     * Due to Java's referencing structure with regards to memory,
+     * I came across the issue of two separate variables editing the same object.
+     * <p>
+     * For this reason, when comparing, I am now required to copy the object.
+     *
+     * @return
+     */
     public Board copy() {
         Board boardCopy = new Board();
         boardCopy.setColumns(columns);
@@ -52,7 +71,10 @@ public class Board {
         this.carArray = carArray;
     }
 
-    //Converts array to 2D Array
+    /**
+     * Converts the board to a 2D array for use by the rendering engine.
+     * @return
+     */
     public Car[][] to2DArray() {
         Car[][] board = new Car[rows][columns];
         for (int i = 0; i < carArray.length; i++) {
@@ -66,6 +88,12 @@ public class Board {
         return board;
     }
 
+    /**
+     * Used for debugging.
+     * P - Piece
+     * R - Red Block
+     * @return
+     */
     public String toString() {
         String out = "";
         Car[][] board = to2DArray();
