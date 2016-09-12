@@ -8,6 +8,7 @@ package FrontEnd;
 public class UIManager {
     private static Canvas canvas;
     private static FrontEnd.Message message;
+    public static String primedWinMessage = "";
 
     /**
      * Starts the canvas UI.
@@ -23,6 +24,10 @@ public class UIManager {
         canvas.update();
     }
 
+    public static void primeWinMessage (String message) {
+        primedWinMessage = message;
+    }
+
     /**
      * Show a message using the Message class.
      *
@@ -31,6 +36,10 @@ public class UIManager {
     public static void showMessage(String messageToShow) {
         if (canvas != null) {
             canvas.setVisible(false);
+        }
+
+        if (messageToShow.equals("You won!")) {
+            messageToShow+=" "+primedWinMessage;
         }
 
         if (message != null) {

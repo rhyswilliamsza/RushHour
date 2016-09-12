@@ -2,6 +2,7 @@ package Backend.Engine;
 
 import Backend.Objects.Board;
 
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -62,6 +63,7 @@ public class SolverManager {
         } while (temp != null);
 
         System.out.println("This board was solved in " + counter + " moves.");
+        FrontEnd.UIManager.primeWinMessage("Solved in " + counter + " moves.");
         solutionString = solutionToSolutionString(list);
     }
 

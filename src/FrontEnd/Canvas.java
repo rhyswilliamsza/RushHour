@@ -46,7 +46,7 @@ class Canvas extends JFrame {
                 for (int c = 0; c < BoardManager.board.getColumns(); c++) {
                     JPanel block = new JPanel();
 
-                    //Check Dimensions
+                    //Check Dimensions and Resizes to fit Screen
                     int blockSize = 100;
                     if (BoardManager.board.getRows() >= 6) {
                         if (800 / BoardManager.board.getRows() < blockSize) {
