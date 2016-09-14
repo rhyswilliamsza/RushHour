@@ -62,7 +62,7 @@ public class SolverManager {
             temp = map.get(temp);
         } while (temp != null);
 
-        System.out.println("Solved in " + counter + " moves.");
+        System.out.println(BoardManager.fileName + ": Solved in " + counter + " moves.");
         FrontEnd.UIManager.primeWinMessage("Solved in " + counter + " moves.");
         solutionString = solutionToSolutionString(list);
     }

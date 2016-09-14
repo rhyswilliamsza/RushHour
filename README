@@ -1,0 +1,18 @@
+According to our project spec, RushHour is a game consists of a collection of cars of varying sizes,
+set either horizontally or vertically, on a NxM grid that has a single exit.
+
+The purpose of the game is to get a red car to the exit, by moving the other cars out of the way.
+
+There are two methods of game play. If two program arguments are given,
+the program will use the file provided by the second argument as a 'solutions' file.
+Otherwise, the program will endeavour to solve the puzzle using a 'SolverManager' class.
+
+Program arguments.
+    First, Board File.
+    Second, not required, Solutions file.
+    Amend:   -v for visual,
+             -c for counter
+
+To check all board files systematically:
+    for k in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 ; do java RushHour Boards/test$k -c ; done
+    for k in 01 02 03 04 05 06 07 08 09 10 ; do java RushHour Boards/own$k -c ; done

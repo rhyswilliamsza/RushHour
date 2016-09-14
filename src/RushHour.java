@@ -24,8 +24,11 @@ class RushHour {
      * <p>
      * Please see SolverManager for more information.
      *
-     * @param args Program arguments. First, Board File. Second, if given, Solutions file.
-     *             Ammend -v for visual, -c for counter
+     * @param args Program arguments.
+     *             First, Board File.
+     *             Second, not required, Solutions file.
+     *             Amend:   -v for visual,
+     *             -c for counter
      */
     public static void main(String[] args) {
 
@@ -52,8 +55,15 @@ class RushHour {
                     //Draw to Canvas
                     UIManager.startUI();
 
+                    //Get Solution
+                    String solutionString = SolverManager.Solve(BoardManager.board);
+
                     //Run solution on UI
-                    SolutionManager.runSolutionsString(SolverManager.Solve(BoardManager.board));
+                    if (solutionString != null) {
+                        SolutionManager.runSolutionsString(solutionString);
+                    } else {
+                        System.out.println("Given board not solvable.");
+                    }
                 } else if (arguments.contains("-c")) {
 
                     //Print solution to console
@@ -61,8 +71,6 @@ class RushHour {
 
                 }
             }
-
-
         }
     }
 }
