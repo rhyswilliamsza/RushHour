@@ -9,6 +9,7 @@ import FrontEnd.UIManager;
  * me@rhyswilliams.co.za
  */
 public class BoardManager {
+    public static String fileName;
     public static final int MOVE_RIGHT = 0;
     public static final int MOVE_LEFT = 1;
     public static final int MOVE_UP = 2;
@@ -24,6 +25,7 @@ public class BoardManager {
      */
     public BoardManager(String inputFileString) {
         BoardFile boardFile = new BoardFile(inputFileString);
+        fileName = inputFileString;
         board = new Board();
         board.setRows(boardFile.getM());
         board.setColumns(boardFile.getN());

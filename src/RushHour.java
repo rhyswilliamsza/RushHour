@@ -9,6 +9,7 @@ import FrontEnd.UIManager;
  * me@rhyswilliams.co.za
  */
 class RushHour {
+
     /**
      * According to our project spec,
      * RushHour is a game consists of a collection of cars of varying sizes,
@@ -24,20 +25,44 @@ class RushHour {
      * Please see SolverManager for more information.
      *
      * @param args Program arguments. First, Board File. Second, if given, Solutions file.
+     *             Ammend -v for visual, -c for counter
      */
     public static void main(String[] args) {
 
-        //Load File
-        new BoardManager(args[0]);
-
-        //Draw to Canvas
-        UIManager.startUI();
-
-        //Check if solution file provided, and run, otherwise solve.
-        if (args.length == 2) {
-            SolutionManager.runSolutionsFile(args[1]);
+        //Checks if an input file was given and assigns to variable.
+        if (args.length > 0) {
+            new BoardManager(args[0]);
         } else {
-            SolutionManager.runSolutionsString(SolverManager.Solve(BoardManager.board));
+            System.out.println("Please give an input file");
+        }
+
+        //Checks if a solutions file is given
+        if (args.length >= 2) {
+            String arguments = "";
+            for (int i = 1; i < args.length; i++) {
+                arguments += " " + args[i];
+            }
+
+            if (!args[1].contains("-")) {
+                UIManager.startUI();
+                SolutionManager.runSolutionsFile(args[1]);
+            } else {
+                if (arguments.contains("-v")) {
+
+                    //Draw to Canvas
+                    UIManager.startUI();
+
+                    //Run solution on UI
+                    SolutionManager.runSolutionsString(SolverManager.Solve(BoardManager.board));
+                } else if (arguments.contains("-c")) {
+
+                    //Print solution to console
+                    SolverManager.Solve(BoardManager.board);
+
+                }
+            }
+
+
         }
     }
 }
